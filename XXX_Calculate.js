@@ -141,18 +141,18 @@ var XXX_Calculate =
 		var earthCirmcumference = 40075.16;
 		
 		// Convert degrees to radians
-		coordinate1.latitude = (coordinate1.latitude * XXX_Math.pi()) / 180;
-		coordinate1.longitude = ($coordinate1.longitude * XXX_Math.pi()) / 180;
-		coordinate2.latitude = ($coordinate2.latitude * XXX_Math.pi()) / 180;
-		coordinate2.longitude = ($coordinate2.longitude * XXX_Math.pi()) / 180;
+		coordinate1.latitude = (coordinate1.latitude * XXX_Number.pi()) / 180;
+		coordinate1.longitude = ($coordinate1.longitude * XXX_Number.pi()) / 180;
+		coordinate2.latitude = ($coordinate2.latitude * XXX_Number.pi()) / 180;
+		coordinate2.longitude = ($coordinate2.longitude * XXX_Number.pi()) / 180;
 		
-		var a = XXX_Math.power(XXX_Math.sine(coordinate2.latitude - coordinate1.latitude / 2), 2);
-		var b = XXX_Math.cosine(coordinate1.latitude) * XXX_Math.cosine(coordinate2.latitude);
-		b *= XXX_Math.power(XXX_Math.sine(coordinate2.longitude - coordinate1.longitude / 2), 2);
+		var a = XXX_Number.power(XXX_Number.sine(coordinate2.latitude - coordinate1.latitude / 2), 2);
+		var b = XXX_Number.cosine(coordinate1.latitude) * XXX_Number.cosine(coordinate2.latitude);
+		b *= XXX_Number.power(XXX_Number.sine(coordinate2.longitude - coordinate1.longitude / 2), 2);
 		a += b;
-		var c = 2 * XXX_Math.arcSine(XXX_Number.lowest(1, XXX_Math.squareRoot(a)));
+		var c = 2 * XXX_Number.arcSine(XXX_Number.lowest(1, XXX_Number.squareRoot(a)));
 		
-		var earthRadius = (earthCirmcumference / XXX_Math.pi()) / 2;
+		var earthRadius = (earthCirmcumference / XXX_Number.pi()) / 2;
 		
 		var distance = earthRadius * c;
 		
@@ -178,11 +178,11 @@ var XXX_Calculate =
 			offset.x = XXX_Number.highest(XXX_Number.lowest(offset.x, -minimumSize.width), -startPositionWithin.x);
 			offset.y = XXX_Number.highest(XXX_Number.lowest(offset.y, -minimumSize.height), -startPositionWithin.y);
 			
-			x = startPositionWithin.x - XXX_Math.absolute(offset.x);
-			y = startPositionWithin.y - XXX_Math.absolute(offset.y);
+			x = startPositionWithin.x - XXX_Number.absolute(offset.x);
+			y = startPositionWithin.y - XXX_Number.absolute(offset.y);
 			
-			width = XXX_Math.absolute(offset.x);
-			height = XXX_Math.absolute(offset.y);
+			width = XXX_Number.absolute(offset.x);
+			height = XXX_Number.absolute(offset.y);
 		}
 		// Top Right
 		else if (offset.x >= 0 && offset.y < 0)
@@ -194,10 +194,10 @@ var XXX_Calculate =
 			offset.y = XXX_Number.highest(XXX_Number.lowest(offset.y, -minimumSize.height), -startPositionWithin.y);
 			
 			x = startPositionWithin.x;
-			y = startPositionWithin.y - XXX_Math.absolute(offset.y);
+			y = startPositionWithin.y - XXX_Number.absolute(offset.y);
 			
 			width = offset.x;
-			height = XXX_Math.absolute(offset.y);
+			height = XXX_Number.absolute(offset.y);
 		}
 		// Bottom Left
 		else if (offset.x < 0 && offset.y >= 0)
@@ -208,10 +208,10 @@ var XXX_Calculate =
 			offset.x = XXX_Number.highest(XXX_Number.lowest(offset.x, -minimumSize.width), -startPositionWithin.x);
 			offset.y = XXX_Number.lowest(XXX_Number.highest(offset.y, minimumSize.height), (containerSize.height - startPositionWithin.y));
 			
-			x = startPositionWithin.x - XXX_Math.absolute(offset.x);
+			x = startPositionWithin.x - XXX_Number.absolute(offset.x);
 			y = startPositionWithin.y;
 			
-			width = XXX_Math.absolute(offset.x);
+			width = XXX_Number.absolute(offset.x);
 			height = offset.y;
 		}
 		// Bottom Right
@@ -620,7 +620,7 @@ var XXX_Calculate =
 		var x = bX - aX;
 		var y = bY - aY;
 		
-		var diagonalDistance = XXX_Math.squareRoot(XXX_Math.power(XXX_Math.absolute(x), 2) + XXX_Math.power(XXX_Math.absolute(y), 2));
+		var diagonalDistance = XXX_Number.squareRoot(XXX_Number.power(XXX_Number.absolute(x), 2) + XXX_Number.power(XXX_Number.absolute(y), 2));
 		
 		return diagonalDistance;
 	},
@@ -672,32 +672,32 @@ var XXX_Calculate =
 		
 			if (y == 0)
 			{
-				radian = (x <= 0) ? XXX_Math.pi() / -2 : XXX_Math.pi() / 2;
+				radian = (x <= 0) ? XXX_Number.pi() / -2 : XXX_Number.pi() / 2;
 			}
 			else
 			{
-				radian = XXX_Math.arcTangent(x / y);
+				radian = XXX_Number.arcTangent(x / y);
 			}
 			
 			if (x >= 0 && y < 0)
 			{
-				radian += XXX_Math.pi();
+				radian += XXX_Number.pi();
 			}
 			
 			if (x < 0 && y < 0)
 			{
-				radian -= XXX_Math.pi();
+				radian -= XXX_Number.pi();
 			}
 			
 		var angle = 0;
 			
 			if (radian < 0)
 			{
-				angle = 180 + (180 - (((radian / XXX_Math.pi()) * 180) * -1));
+				angle = 180 + (180 - (((radian / XXX_Number.pi()) * 180) * -1));
 			}
 			else
 			{
-				angle = (radian / XXX_Math.pi()) * 180;
+				angle = (radian / XXX_Number.pi()) * 180;
 			}
 			
 			if (angle == 360)
@@ -820,7 +820,7 @@ var XXX_Calculate =
 		}
 		else if (end < 0)
 		{
-			var remainder = 360 - XXX_Math.absolute(end);
+			var remainder = 360 - XXX_Number.absolute(end);
 			
 			// counter clock wise
 			if (angle < start)
