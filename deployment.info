@@ -1,0 +1,6 @@
+project:XXX_Calculate_JS
+deployEnvironment:development
+checkout:master
+commitHash:85fe5d7f002b0976c41bc9b62901cc55506488ea
+timestamp:2015-04-13T09:43:31Z
+deployer:operations
